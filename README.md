@@ -24,11 +24,7 @@ Apollo's scheduler uses the latest GLADE catalog (https://glade.elte.hu/) for se
 
 One requires an account on the GCN platform (https://gcn.nasa.gov/). The parameters `client_id` and `client_secret` are uniquely generated per user, and must be plugged into the configuration file in order to use the listener.
 
-I have developed Apollo on the Ubuntu 22.04 LTS operating system using Python 3.10.6. The main dependencies are:
-
-- `Astropy` (https://www.astropy.org/)
-- `gcn-kafka` (https://pypi.org/project/gcn-kafka/)
-- `pandas` (https://pandas.pydata.org/)
+I have developed Apollo on the Ubuntu 22.04 LTS operating system using Python 3.10.6.
 
 ## References
 
@@ -38,7 +34,7 @@ I have developed Apollo on the Ubuntu 22.04 LTS operating system using Python 3.
 
 ---
 
-19 Jul 2023
+19 Jul 2023<br>
 Last update: 19 Jul 2023
 
 Richard Camuccio<br>
