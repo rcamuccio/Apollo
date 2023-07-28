@@ -328,6 +328,17 @@ def read_skymap(skymap, resolution, save=False):
 		print(" WARNING: Unrecognized skymap!")
 		return
 
+def read_notice(event_id, alert_type):
+
+	path = "superevents/" + event_id + "/" + event_id + "-" + alert_type + ".json"
+
+	with open(path, "r") as f:
+		record = f.read()
+
+	parse_notice(record)
+
+	return
+
 def retrieve_notice(client_id, client_secret):
 
 	consumer = Consumer(client_id=client_id, client_secret=client_secret)
@@ -373,8 +384,16 @@ if __name__ == "__main__":
 	config = configparser.ConfigParser()
 	config.read("config.ini")
 
-	run_graph_targets = config["Run"]["graph_targets"]
-	run_parse_notice = config["Run"]["parse_notice"]
+	# --- READ NOTICE
+
+	run_read_notice = config["Run"]["read_notice"]
+
+	if run_read_notice == "yes":
+
+		alert_type = config["Directory"]["alert_type"]
+		event_id = config["Directory"]["event_id"]
+
+		read_notice(event_id, alert_type)
 
 	# --- RETRIEVE NOTICES ---
 	
@@ -400,40 +419,28 @@ if __name__ == "__main__":
 		num_remain = int(num_remain)
 
 		event_id = config["Directory"]["event_id"]
-		read_dir = config["Directory"]["read_dir"]
 
-		skymap = read_dir + "/" + event_id + "/bayestar-HLV.fits"
+		skymap = "superevents/" + event_id + "/bayestar.fits.gz,1"
 
 		generate_targets(skymap, detection_time=None, latitude=latitude, num_remain=num_remain, plot=True)
 	
 	# --- TEST NOTICES ---
 
 	run_test_notice = config["Run"]["test_notice"]
-
 	if run_test_notice == "yes":
-
 		test_type = config["Test"]["test_type"]
-
 		test_notice(test_type)
 
 	# --- TEST SKYMAPS ---
 
 	run_read_flatres_skymap = config["Run"]["read_flatres_skymap"]
-
 	if run_read_flatres_skymap == "yes":
-
-		mock_dir = config["Directory"]["mock_dir"]
-		flatres_skymap = mock_dir + "/bayestar.fits.gz,0"
-
+		flatres_skymap = config["Test"]["flatres_skymap"]
 		read_skymap(flatres_skymap, resolution="flat", save=False)
 
 	run_read_multires_skymap = config["Run"]["read_multires_skymap"]
-
 	if run_read_multires_skymap == "yes":
-
-		mock_dir = config["Directory"]["mock_dir"]
-		multires_skymap = mock_dir + "/bayestar.multiorder.fits"
-
+		multires_skymap = config["Test"]["multires_skymap"]
 		read_skymap(multires_skymap, resolution="multi", save=False)
 
 	end_time = time.time()
