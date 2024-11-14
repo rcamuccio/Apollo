@@ -44,10 +44,10 @@ class Configuration:
 	OVERHEAD = 30.
 	READ_TIME = 100.
 
-	CLIENT_ID = 'j1hrnlcur5mc2mkch0a037s98'
-	CLIENT_SECRET = '1ojbdiie5bl6ccsf369b74hk0v0lcuemaeq32r4qa9dor9up4cp0'
-	EMAIL = 'toros.alerts@yahoo.com'
-	MAILING_LIST = ['rcamuccio@gmail.com', 'moises.castillo01@utrgv.edu', 'moemyself3@gmail.com']
+	CLIENT_ID = 'client_id'
+	CLIENT_SECRET = 'client_secret'
+	EMAIL = 'email'
+	MAILING_LIST = ['email', 'email', 'email']
 	PAS = 'ncnrlqwdthofhoch'
 	PORT = 465
 	SMTP = 'smtp.mail.yahoo.com'
